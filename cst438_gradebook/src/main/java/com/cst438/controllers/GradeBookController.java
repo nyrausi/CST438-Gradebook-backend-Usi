@@ -172,17 +172,16 @@ public class GradeBookController {
 	}
 	
 	// adds a new assignment for a course
-	@PostMapping("/course/{course_id}/addassignment")
+	@PostMapping("/assignment")
 	@Transactional
-	public AssignmentListDTO.AssignmentDTO addAssignment(@RequestBody AssignmentListDTO.AssignmentDTO assignmentDTO, 
-			@PathVariable("course_id") Integer course_id) {
-		System.out.println("Gradebook - addAssignment for course " + course_id);		
+	public AssignmentListDTO.AssignmentDTO addAssignment(@RequestBody AssignmentListDTO.AssignmentDTO assignmentDTO) {
+		System.out.println("Gradebook - addAssignment for course " + assignmentDTO.courseId);
 		
 		// check that this request contains a valid course
-		Course c = courseRepository.findById(course_id).orElse(null);
+		Course c = courseRepository.findById(assignmentDTO.courseId).orElse(null);
 		
 		if (c == null) {
-			throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Course not found. "+ course_id );
+			throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Course not found. "+ assignmentDTO.courseId);
 		}
 		
 		// check that this request is from the course instructor

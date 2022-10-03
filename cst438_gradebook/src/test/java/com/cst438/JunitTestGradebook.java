@@ -300,11 +300,12 @@ public class JunitTestGradebook {
 		AssignmentListDTO.AssignmentDTO assignmentDTO = new AssignmentListDTO.AssignmentDTO();
 		assignmentDTO.assignmentName = TEST_ASSIGNMENT_NAME;
 		assignmentDTO.dueDate = TEST_DUE_DATE;
+		assignmentDTO.courseId = TEST_COURSE_ID;
 		
 		// then do an http post request with body of courseDTO as JSON
 		response = mvc.perform(
 				MockMvcRequestBuilders
-			      .post("/course/40442/addassignment")
+			      .post("/assignment")
 			      .content(asJsonString(assignmentDTO))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
