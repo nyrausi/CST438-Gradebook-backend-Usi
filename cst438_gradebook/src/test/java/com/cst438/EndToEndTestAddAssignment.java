@@ -90,7 +90,7 @@ public class EndToEndTestAddAssignment {
 			driver.findElement(By.id("Submit")).click();
 			Thread.sleep(SLEEP_DURATION);
 			
-			// make sure that the assignment is now in the database as a new assignment
+			// verify that the added test assignment is now in the database
 			boolean foundTestAssignment = false;
 			for (Assignment assignment : assignmentRepository.findAll()) {
         		if (assignment.getName().equals(TEST_ASSIGNMENT_NAME)) {
@@ -99,6 +99,10 @@ public class EndToEndTestAddAssignment {
         		}
         	}
 			assertTrue(foundTestAssignment, " Could not find assignment with name, " + TEST_ASSIGNMENT_NAME + ", in database. Please try again. ");
+			
+			// verify that the successful toast message pops up
+			String toastText = driver.findElement(By.cssSelector(".Toastify__toast-body div:nth-child(2)")).getText();
+			assertEquals("Assignment successfully added", toastText);
 
 		} catch (Exception ex) {
 			throw ex;
