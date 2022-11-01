@@ -214,7 +214,7 @@ public class EndToEndTestAddAssignment {
         			break;
         		}
         	}
-			assertTrue(notFoundTestAssignment, " Found invalid assignment with blank name in database. Please try again. ");
+			assertTrue(notFoundTestAssignment, " Found invalid assignment with invalid due date in database. Please try again. ");
 			
 			// verify that the failed toast message pops up
 			toastText = driver.findElement(By.cssSelector(".Toastify__toast-body div:nth-child(2)")).getText();
@@ -234,7 +234,7 @@ public class EndToEndTestAddAssignment {
         			break;
         		}
         	}
-			assertTrue(notFoundTestAssignment, " Found invalid assignment with blank name in database. Please try again. ");
+			assertTrue(notFoundTestAssignment, " Found invalid assignment with invalid course ID in database. Please try again. ");
 			
 			// verify that the failed toast message pops up
 			toastText = driver.findElement(By.cssSelector(".Toastify__toast-body div:nth-child(2)")).getText();
